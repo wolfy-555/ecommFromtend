@@ -19,7 +19,7 @@ HAVING
         ) AS avg_city_customers
     )
 ORDER BY country.country_name ASC;
-<br></br>
+```
 ## 📌 2
 ```sql
 
