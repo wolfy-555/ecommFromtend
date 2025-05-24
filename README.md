@@ -33,3 +33,35 @@ FROM
 COLLECTION;
 
 ```
+## 📌 3
+```sql
+SELECT 
+CASE
+when red=green and green=blue then 'good'
+when red=green OR red=blue or green=blue then 'bad'
+else 'worse'
+END AS TYPE_OF_COLLECTION
+FROM
+COLLECTION;
+
+```
+## 📌 4
+```sql
+SELECT 
+    a.iban AS IBAN,
+    MIN(t.amount) AS min_transaction,
+    MAX(t.amount) AS max_transaction,
+    AVG(t.amount) AS avg_transaction,
+    COUNT(*) AS total_transactions
+FROM 
+    accounts a
+JOIN 
+    transactions t ON a.id = t.account_id
+WHERE 
+    t.dt BETWEEN '2022-09-01' AND '2022-09-30'
+GROUP BY 
+    a.iban
+ORDER BY 
+    a.iban ASC;
+
+```
