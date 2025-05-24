@@ -1,3 +1,8 @@
+## 📌 SQL Query: Customers in Cities with Above-Average Customer Counts
+
+This query returns a list of countries and cities that have a **number of customers greater than the average** number of customers per city.
+
+```sql
 SELECT country_name, city_name, COUNT(customer.id) AS number_of_customer
 FROM 
     country 
