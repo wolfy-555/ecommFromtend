@@ -21,7 +21,7 @@ HAVING
 ORDER BY country.country_name ASC;
 
 ## 📌 2
-```
+```sql
 
 SELECT 
 CASE
