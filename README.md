@@ -65,3 +65,16 @@ ORDER BY
     a.iban ASC;
 
 ```
+## 📌 5
+```sql
+SELECT DISTINCT 
+    p.NAME AS professor_name,
+    c.NAME AS course_name
+FROM 
+    PROFESSOR p
+JOIN 
+    SCHEDULE s ON p.ID = s.PROFESSOR_ID
+JOIN 
+    COURSE c ON s.COURSE_ID = c.ID;
+```
+
