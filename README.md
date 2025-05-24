@@ -19,3 +19,17 @@ HAVING
         ) AS avg_city_customers
     )
 ORDER BY country.country_name ASC;
+
+## 📌 2
+```
+
+SELECT 
+CASE
+when red=green and green=blue then 'good'
+when red=green OR red=blue or green=blue then 'bad'
+else 'worse'
+END AS TYPE_OF_COLLECTION
+FROM
+COLLECTION;
+
+```
