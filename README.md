@@ -77,4 +77,63 @@ JOIN
 JOIN 
     COURSE c ON s.COURSE_ID = c.ID;
 ```
+## 📌 6
+```cs
+using System;
+
+namespace HelloWorld
+{
+    public abstract class Employee
+    {
+        public string department;
+        public string name;
+        public string location;
+        public bool onVacation = false;
+
+        public Employee(string department, string name, string location)
+        {
+            this.department = department;
+            this.name = name;
+            this.location = location;
+        }
+
+        public string getName()
+        {
+            return name;
+        }
+
+        public string getDepartment()
+        {
+            return department;
+        }
+
+        public string getLocation()
+        {
+            return location;
+        }
+
+        public bool getStatus()
+        {
+            return onVacation;
+        }
+
+        public void switchStatus()
+        {
+            onVacation = !onVacation;
+        }
+    }
+
+    public class FinanceEmployee : Employee
+    {
+        public FinanceEmployee(string name, string location) : base("Finance", name, location) { }
+    }
+
+    public class MarketingEmployee : Employee
+    {
+        public MarketingEmployee(string name, string location) : base("Marketing", name, location) { }
+    }
+}
+
+    
+```
 
