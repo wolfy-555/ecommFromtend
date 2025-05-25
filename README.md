@@ -135,7 +135,7 @@ namespace HelloWorld
 
     
 ```
-## 📌 5
+## 📌 7
 ```cs
 
 public class Reporting : IReporting
@@ -165,4 +165,69 @@ public class Reporting : IReporting
 
 
 ```
-    
+## 📌 5
+```cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+// Abstract base class given in the problem
+public abstract class CoffeeShopBillBase
+{
+    public Dictionary<string, decimal> Prices { get; set; }
+    public Dictionary<string, int> Discounts { get; set; }
+
+    public CoffeeShopBillBase(Dictionary<string, decimal> prices, Dictionary<string, int> discounts)
+    {
+        Prices = prices;
+        Discounts = discounts;
+    }
+
+    public abstract List<List<object>> Calculate(List<List<object>> shoppingList);
+}
+
+// Your implementation class
+public class CoffeeShopBill : CoffeeShopBillBase
+{
+    public CoffeeShopBill(Dictionary<string, decimal> prices, Dictionary<string, int> discounts)
+        : base(prices, discounts)
+    {
+    }
+
+    public override List<List<object>> Calculate(List<List<object>> shoppingList)
+    {
+        // Aggregate quantities for duplicate items
+        Dictionary<string, int> quantities = new Dictionary<string, int>();
+        foreach (var entry in shoppingList)
+        {
+            string item = (string)entry[0];
+            int qty = Convert.ToInt32(entry[1]);
+
+            if (quantities.ContainsKey(item))
+                quantities[item] += qty;
+            else
+                quantities[item] = qty;
+        }
+
+        // Prepare the result list
+        List<List<object>> bill = new List<List<object>>();
+
+        // For each aggregated item, calculate price and apply discount
+        foreach (var kvp in quantities.OrderBy(k => k.Key))
+        {
+            string item = kvp.Key;
+            int qty = kvp.Value;
+            decimal pricePerUnit = Prices.ContainsKey(item) ? Prices[item] : 0m;
+
+            int discountPercent = Discounts.ContainsKey(item) ? Discounts[item] : 0;
+            // total price = quantity * price * (1 - discount%)
+            decimal totalPrice = qty * pricePerUnit * (1m - discountPercent / 100m);
+
+            bill.Add(new List<object> { item, pricePerUnit, totalPrice });
+        }
+
+        return bill;
+    }
+}
+
+```
