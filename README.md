@@ -79,7 +79,6 @@ JOIN
 ```
 ## 📌 6
 ```cs
-using System;
 
 namespace HelloWorld
 {
@@ -136,4 +135,34 @@ namespace HelloWorld
 
     
 ```
+## 📌 5
+```cs
 
+public class Reporting : IReporting
+{
+    private List<Order> order = new List<Order>();
+
+    public void AddOrder(Order order)
+    {
+        this.order.Add(order);
+    }
+
+    public int TotalOrderAmountPerCustomer(int customerId)
+    {
+        return order.Where(o => o.Customer.Id == customerId).Sum(o => o.Amount);
+    }
+
+    public int TotalOrderAmountOnDate(DateTime date)
+    {
+        return order.Where(o => o.Date.Date == date.Date).Sum(o => o.Amount);
+    }
+
+    public List<Order> GetOrder(int customerId)
+    {
+        return order.Where(o => o.Customer.Id == customerId).ToList();
+    }
+}
+
+
+```
+    
