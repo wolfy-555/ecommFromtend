@@ -48,17 +48,18 @@ COLLECTION;
 ## 📌 4
 ```sql
 SELECT 
+SELECT 
     a.iban AS IBAN,
-    MIN(t.amount) AS min_transaction,
-    MAX(t.amount) AS max_transaction,
-    AVG(t.amount) AS avg_transaction,
+    FORMAT(MIN(t.amount), 2) AS min_transaction,
+    FORMAT(MAX(t.amount), 2) AS max_transaction,
+    FORMAT(AVG(t.amount), 2) AS avg_transaction,
     COUNT(*) AS total_transactions
 FROM 
     accounts a
 JOIN 
     transactions t ON a.id = t.account_id
 WHERE 
-    t.dt BETWEEN '2022-09-01' AND '2022-09-30'
+    t.dt LIKE '2022-09-%'
 GROUP BY 
     a.iban
 ORDER BY 
